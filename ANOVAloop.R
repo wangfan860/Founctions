@@ -4,7 +4,7 @@ for(i in 3:137){
   columns <- names(a[i])
   anovaresult<- anova(lm(a[,i]~subtype,data=a)) 
   print(columns)
-  print(anovaresult)
+  print(anovaresult$Pr)
 }
 sink()        ###print all results including significant and non-significant###
 
