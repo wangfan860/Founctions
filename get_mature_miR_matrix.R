@@ -3,7 +3,7 @@
 #################################################################################
 #OUTPUT: an udpated data matrix with full miRNA names.
 #################################################################################
-
+###https://github.com/rptashkin/TCGA_miRNASeq_matrix
 #change directory to a directory containing files to update and accessionTOname file i.e.: > setwd("Desktop/miRdata/")
 
 library(splitstackshape)
