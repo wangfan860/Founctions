@@ -7,7 +7,7 @@ T_geneRNAseqV2=t(geneRNAseqV2)
 rownames(miRHiSeq)=miRHiSeq[,1]
 rownames(miRGA)=miRGA[,1]
 colnames(T_geneRNAseqV1)=T_geneRNAseqV1[1,]
-colnames(T_geneRNAseqV2)=T_g11eneRNAseqV2[1,]
+colnames(T_geneRNAseqV2)=T_geneRNAseqV2[1,]
 miRHiseq_RNAseqV1=merge(miRHiSeq, T_geneRNAseqV1, by="row.names")
 miRHiseq_RNAseqV2=merge(miRHiSeq, T_geneRNAseqV2, by="row.names")
 miRGA_RNAseqV1=merge(miRGA, T_geneRNAseqV1, by="row.names")
