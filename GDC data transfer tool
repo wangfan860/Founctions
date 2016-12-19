@@ -1,0 +1,15 @@
+This is copied from Command Prompt
+
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Users\fwang1>cd C:\Users\fwang1\Desktop
+
+C:\Users\fwang1\Desktop>gdc-client.exe
+usage: gdc-client.exe [-h] [--version] {download,upload,interactive} ...
+gdc-client.exe: error: too few arguments
+
+C:\Users\fwang1\Desktop>gdc-client download 22a29915-6712-4f7a-8dba-985ae9a1f005
+
+100% [#############################################] Time: 0:00:01   5.44 MB/s
+100% [#############################################] Time: 0:00:00 142.68 kB/s
