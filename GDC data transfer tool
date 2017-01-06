@@ -11,5 +11,17 @@ gdc-client.exe: error: too few arguments
 
 C:\Users\fwang1\Desktop>gdc-client download 22a29915-6712-4f7a-8dba-985ae9a1f005
 
-100% [#############################################] Time: 0:00:01   5.44 MB/s
-100% [#############################################] Time: 0:00:00 142.68 kB/s
+
+
+SUMMARY:
+Successfully downloaded: 989
+Failed to download: 1
+
+ERROR: b5959297-695c-48f2-be12-ca4ba010e538: Unable to connect to API: (HTTPSCon
+nectionPool(host='gdc-api.nci.nih.gov', port=443): Read timed out. (read timeout
+=60)). Is this url correct: 'https://gdc-api.nci.nih.gov/data/'? Is there a conn
+ection to the API? Is the server running?
+
+C:\Users\fwang1\Desktop>gdc-client download -m C:\Users\fwang1\Downloads\gdc_man
+ifest.2017-01-06T18_00_04.548286.tsv -t C:\Users\fwang1\Downloads\gdc-user-token
+.2017-01-06T13_14_27-06_00.txt
