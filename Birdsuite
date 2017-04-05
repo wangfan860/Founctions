@@ -1,3 +1,10 @@
+####it's a known issue that mac couldn't keep auth keys after restart```
+
+ssh-add -K ~/.ssh/*
+ 
+##and keep hitting `enter` then login pdc_vm
+
+
 ssh pdc_fan
 rsync --progress *txt pdc_fan:/mnt/SCRATCH/
 cd /
