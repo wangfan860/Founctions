@@ -1,0 +1,12 @@
+ssh pdc_fan
+rsync --progress *txt pdc_fan:/mnt/SCRATCH/
+cd /
+cd ~
+cd Google\ Drive/
+rsync --progress pdc_fan:/mnt/SCRATCH/BRCA1  ~/Desktop/
+  
+
+./make_bim.py --annotations=/mnt/SCRATCH/GenomeWideSNP_6.rs_snp_map --calls=/mnt/SCRATCH/brca1---call.txt --output=/mnt/SCRATCH/BRCA1-bim
+
+./make_bed.py --calls=/mnt/SCRATCH/brca1---call.txt --confs=/mnt/SCRATCH/brca1---conf.txt --output=/mnt/SCRATCH/BRCA1
+
