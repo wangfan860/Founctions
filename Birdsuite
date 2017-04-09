@@ -17,3 +17,4 @@ rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1  ~/Desktop/
 
 ./make_bed.py --calls=/mnt/SCRATCH/0408/brca1---call.txt --confs=/mnt/SCRATCH/0408/brca1---conf.txt --output=/mnt/SCRATCH/0408/BRCA1
 
+for i in {0..26}; do mv $i.vcf chr$i.vcf; done
