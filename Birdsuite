@@ -6,14 +6,14 @@ ssh-add -K ~/.ssh/*
 
 
 ssh pdc_fan
-rsync --progress *txt pdc_fan:/mnt/SCRATCH/
+rsync --progress *txt pdc_fan:/mnt/SCRATCH/0408/
 cd /
 cd ~
 cd Google\ Drive/
-rsync --progress pdc_fan:/mnt/SCRATCH/BRCA1  ~/Desktop/
+rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1  ~/Desktop/
   
 
-./make_bim.py --annotations=/mnt/SCRATCH/GenomeWideSNP_6.na35.annot.csv --calls=/mnt/SCRATCH/brca1---call.txt --output=/mnt/SCRATCH/BRCA1-bim
+./make_bim.py --annotations=/mnt/SCRATCH/0408/GenomeWideSNP_6.na35.annot.csv --calls=/mnt/SCRATCH/0408/brca1---call.txt --output=/mnt/SCRATCH/0408/BRCA1-bim
 
-./make_bed.py --calls=/mnt/SCRATCH/brca1---call.txt --confs=/mnt/SCRATCH/brca1---conf.txt --output=/mnt/SCRATCH/BRCA1
+./make_bed.py --calls=/mnt/SCRATCH/0408/brca1---call.txt --confs=/mnt/SCRATCH/0408/brca1---conf.txt --output=/mnt/SCRATCH/0408/BRCA1
 
