@@ -17,4 +17,20 @@ rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1  ~/Desktop/
 
 ./make_bed.py --calls=/mnt/SCRATCH/0408/brca1---call.txt --confs=/mnt/SCRATCH/0408/brca1---conf.txt --output=/mnt/SCRATCH/0408/BRCA1
 
-for i in {0..26}; do mv $i.vcf chr$i.vcf; done
+tabix -p vcf myvcf.vcf.gz
+
+for i in {0..26}; do tabix BRCA1.vcf.gz $i > chr$i.vcf; done
+
+ 2108  mv chr23.vcf chrX.vcf
+ 2109  mv chr24.vcf chrY.vcf
+ 2110  mv chr26.vcf chrM.vcf
+ 
+ rm chr25.vcf
+ rm chr0.vcf
+
+ 2133  sed -i 's/^26/chrM/g' chrM.vcf
+ 2135  sed -i 's/^24/chrY/g' chrY.vcf 
+ 2136  sed -i 's/^23/chrX/g' chrX.vcf
+ 
+for i in {1..22}; do sed -i "s/^${i}/chr${i}/" chr$i.vcf; done
+
