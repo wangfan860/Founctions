@@ -12,25 +12,36 @@ cd ~
 cd Google\ Drive/
 rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1  ~/Desktop/
   
-
+##birdsuite, annotaion file was from https://www.thermofisher.com/us/en/home/life-science/microarray-analysis/microarray-data-analysis/genechip-array-annotation-files.html#/legacy=affymetrix.com
 ./make_bim.py --annotations=/mnt/SCRATCH/0408/GenomeWideSNP_6.na35.annot.csv --calls=/mnt/SCRATCH/0408/brca1---call.txt --output=/mnt/SCRATCH/0408/BRCA1-bim
 
 ./make_bed.py --calls=/mnt/SCRATCH/0408/brca1---call.txt --confs=/mnt/SCRATCH/0408/brca1---conf.txt --output=/mnt/SCRATCH/0408/BRCA1
 
-tabix -p vcf myvcf.vcf.gz
+plink --ped mystudy_chr1.ped --map mystudy_chr1.map --recode vcf --out mystudy_chr1
+vcf-sort BRCA1.vcf | bgzip -c > BRCA1.vcf.gz
+##creat index
+tabix BRCA1.vcf.gz
 
+##split VCF file by chromosome
 for i in {0..26}; do tabix BRCA1.vcf.gz $i > chr$i.vcf; done
 
- 2108  mv chr23.vcf chrX.vcf
- 2109  mv chr24.vcf chrY.vcf
- 2110  mv chr26.vcf chrM.vcf
- 
- rm chr25.vcf
- rm chr0.vcf
+mv chr23.vcf chrX.vcf
+mv chr24.vcf chrY.vcf
+mv chr26.vcf chrM.vcf
 
- 2133  sed -i 's/^26/chrM/g' chrM.vcf
- 2135  sed -i 's/^24/chrY/g' chrY.vcf 
- 2136  sed -i 's/^23/chrX/g' chrX.vcf
- 
+##remove chr25 (PAR or XY), remove chr0 (undefined)
+rm chr25.vcf
+rm chr0.vcf
+
+##replace 26 with chrM, 24 with chrY, 23 with chrX
+sed -i 's/^26/chrM/g' chrM.vcf
+sed -i 's/^24/chrY/g' chrY.vcf 
+sed -i 's/^23/chrX/g' chrX.vcf
+
+##replace 1,2,3..22 in the first column with chr1,chr2...chr22 
 for i in {1..22}; do sed -i "s/^${i}/chr${i}/" chr$i.vcf; done
+
+##Create a sorted *.vcf.gz file using VCFtools and tabix (including bgzip)
+for i in chr
+for i in chr*; do vcf-sort $i | bgzip -c > BRCA1_$i.gz; done
 
