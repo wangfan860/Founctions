@@ -1,7 +1,5 @@
-####it's a known issue that mac couldn't keep auth keys after restart```
-
-ssh-add -K ~/.ssh/*
- 
+####it's a known issue that mac couldn't keep auth keys after restart
+ssh-add ~/.ssh/pdc*
 ##and keep hitting `enter` then login pdc_vm
 
 
