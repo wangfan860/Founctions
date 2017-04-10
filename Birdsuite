@@ -45,3 +45,6 @@ for i in {1..22}; do sed -i "s/^${i}/chr${i}/" chr$i.vcf; done
 for i in chr
 for i in chr*; do vcf-sort $i | bgzip -c > BRCA1_$i.gz; done
 
+##save to local computer
+rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1_chr*  ~/Desktop/
+
