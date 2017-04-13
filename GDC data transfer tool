@@ -9,6 +9,7 @@ C:\Users\fwang1\Desktop>gdc-client.exe
 usage: gdc-client.exe [-h] [--version] {download,upload,interactive} ...
 gdc-client.exe: error: too few arguments
 
+##in ubuntu, ./gdc-client download -t gdc-user-token.2017-04-13T14_39_48-05_00.txt -m 997fileIDonly.txt
 C:\Users\fwang1\Desktop>gdc-client download 22a29915-6712-4f7a-8dba-985ae9a1f005
 
 
