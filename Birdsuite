@@ -32,16 +32,15 @@ rm chr25.vcf
 rm chr0.vcf
 
 ##replace 26 with chrM, 24 with chrY, 23 with chrX
-sed -i 's/^26/chrM/g' chrM.vcf
-sed -i 's/^24/chrY/g' chrY.vcf 
-sed -i 's/^23/chrX/g' chrX.vcf
+sed -i 's/^26/M/g' chrM.vcf
+sed -i 's/^24/Y/g' chrY.vcf 
+sed -i 's/^23/X/g' chrX.vcf
 
-##replace 1,2,3..22 in the first column with chr1,chr2...chr22 
-for i in {1..22}; do sed -i "s/^${i}/chr${i}/" chr$i.vcf; done
+##add header to all splitted vcfs.
+for i in {1..22} X Y M; do cat header chr$i.vcf >> new_chr$i.vcf; done
 
 ##Create a sorted *.vcf.gz file using VCFtools and tabix (including bgzip)
-for i in chr
-for i in chr*; do vcf-sort $i | bgzip -c > BRCA1_$i.gz; done
+for i in new_*; do vcf-sort $i | bgzip -c > BRCA1_$i.gz; done
 
 ##save to local computer
 rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1_chr*  ~/Desktop/
