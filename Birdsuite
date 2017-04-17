@@ -2,20 +2,32 @@
 ssh-add ~/.ssh/pdc*
 ##and keep hitting `enter` then login pdc_vm
 
-
 ssh pdc_fan
 rsync --progress *txt pdc_fan:/mnt/SCRATCH/0408/
-cd /
-cd ~
 cd Google\ Drive/
-rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1  ~/Desktop/
-  
+rsync --progress /media/sf_share/*fam pdc_fan:/mnt/SCRATCH/0408/997BRCA_0416
+
 ##birdsuite, annotaion file was from https://www.thermofisher.com/us/en/home/life-science/microarray-analysis/microarray-data-analysis/genechip-array-annotation-files.html#/legacy=affymetrix.com
 ./make_bim.py --annotations=/mnt/SCRATCH/0408/GenomeWideSNP_6.na35.annot.csv --calls=/mnt/SCRATCH/0408/brca1---call.txt --output=/mnt/SCRATCH/0408/BRCA1-bim
 
 ./make_bed.py --calls=/mnt/SCRATCH/0408/brca1---call.txt --confs=/mnt/SCRATCH/0408/brca1---conf.txt --output=/mnt/SCRATCH/0408/BRCA1
 
-plink --ped mystudy_chr1.ped --map mystudy_chr1.map --recode vcf --out mystudy_chr1
+##This option uses X chromosome data to determine sex (i.e. based on heterozygosity rates) and flags individuals for whom the reported sex in the PED file does not match the estimated sex (given genomic data). A PROBLEM arises if the two sexes do not match
+##11 samples are mismatched. All 11 samples are reported male in TCGA.
+
+##sort bim file by chromosome id 
+sort -n BRCA0416_1.bim > BRCA0416_02.bim
+
+##make sure the chr id is in correct order
+awk '{print $1}'  BRCA0416_02.bim | uniq
+
+##fam file should be ready as well, the following cmd will convert binary BED fileset back into a standard PED/MAP fileset
+plink --bfile BRCA1 --recode --out BRCA_ped
+
+##convert your ped/map file into a VCF file
+plink --ped BRCA1_ped.ped --map BRCA1_ped.map --recode vcf --out BRCA_vcf
+
+##zip vcf file
 vcf-sort BRCA1.vcf | bgzip -c > BRCA1.vcf.gz
 ##creat index
 tabix BRCA1.vcf.gz
