@@ -16,7 +16,7 @@ rsync --progress /media/sf_share/*fam pdc_fan:/mnt/SCRATCH/0408/997BRCA_0416
 ##11 samples are mismatched. All 11 samples are reported male in TCGA.
 
 ##sort bim file by chromosome id 
-sort -n BRCA0416_1.bim > BRCA0416_02.bim
+sort -n BRCA0416_2.bim > BRCA0416_02.bim
 
 ##make sure the chr id is in correct order
 awk '{print $1}'  BRCA0416_02.bim | uniq
