@@ -1,10 +1,6 @@
 ####it's a known issue that mac couldn't keep auth keys after restart
 ssh-add ~/.ssh/pdc*
-##and keep hitting `enter` then login pdc_vm
 
-ssh pdc_fan
-rsync --progress *txt pdc_fan:/mnt/SCRATCH/0408/
-cd Google\ Drive/
 rsync --progress /media/sf_share/*fam pdc_fan:/mnt/SCRATCH/0408/997BRCA_0416
 
 ##birdsuite, annotaion file was from https://www.thermofisher.com/us/en/home/life-science/microarray-analysis/microarray-data-analysis/genechip-array-annotation-files.html#/legacy=affymetrix.com
@@ -24,7 +20,17 @@ awk '{print $1}'  BRCA0416_02.bim | uniq
 ##fam file should be ready as well, the following cmd will convert binary BED fileset back into a standard PED/MAP fileset
 plink --bfile BRCA1 --recode --out BRCA_ped
 
-##convert your ped/map file into a VCF file
+##merge multiple PED/MAP filesets. Need to specify a single file contains a list of files.
+##nano Allfile.txt, looks like below
+BRCA0416_1_ped.ped BRCA0416_1_ped.map
+BRCA0416_2_ped.ped BRCA0416_2_ped.map
+BRCA0416_3_ped.ped BRCA0416_3_ped.map
+BRCA0416_4_ped.ped BRCA0416_4_ped.map
+
+##merge multiple PED/MAP filesets.It seems ped/map/bim/bed/fam should be all prepared ahead of time.
+/mnt/SCRATCH/plink1.9/plink --file BRCA0416_1_ped --merge-list allfile.txt --recode --out testmerge
+
+##convert ped/map file into a VCF file
 plink --ped BRCA1_ped.ped --map BRCA1_ped.map --recode vcf --out BRCA_vcf
 
 ##zip vcf file
