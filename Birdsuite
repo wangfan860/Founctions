@@ -18,7 +18,7 @@ sort -n BRCA0416_2.bim > BRCA0416_02.bim
 awk '{print $1}'  BRCA0416_02.bim | uniq
 
 ##fam file should be ready as well, the following cmd will convert binary BED fileset back into a standard PED/MAP fileset
-plink --bfile BRCA1 --recode --out BRCA_ped
+/mnt/SCRATCH/plink1.9/plink --bfile BRCA1 --recode --out BRCA_ped
 
 ##merge multiple PED/MAP filesets. Need to specify a single file contains a list of files.
 ##nano Allfile.txt, looks like below
