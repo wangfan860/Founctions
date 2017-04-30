@@ -61,5 +61,5 @@ for i in {1..22} X Y M; do cat header chr$i.vcf >> new_chr$i.vcf; done
 for i in new_*; do vcf-sort $i | bgzip -c > BRCA1_$i.gz; done
 
 ##save to local computer
-rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1_chr*  ~/Desktop/
+rsync --progress pdc_fan:/mnt/SCRATCH/0408/BRCA1_chr*  /media/sf_share/
 
