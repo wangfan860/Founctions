@@ -11,4 +11,8 @@ stageTable=merge(stage, expression, by="row.names")
 df <- stageTable[4:17817]
 dff=as.matrix(sapply(df, as.numeric))  
 a=autoplot(prcomp(dff), data = stageTable, colour = 'clinical_stage')
+
+##for limited number of catagories
 a + scale_color_manual(values = c("black","green","red","yellow"))
+##for continuous values
+a + scale_colour_gradientn(colours=c("red", "green"))
