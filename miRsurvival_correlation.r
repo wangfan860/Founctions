@@ -57,3 +57,7 @@ for(cpheno in phenolist) {pheno = data.miR.survival[,cpheno]
                                                   print(cexpr)                     
                                                   print(summary(fit))}}
 write.table(results, file="result.txt", quote=F, col=T, row=F)
+
+##odd or even rows
+del <- seq(1, nrow(results), by = 2)
+b = results[-del, ]
