@@ -1,8 +1,0 @@
-##This option uses X chromosome data to determine sex (i.e. based on heterozygosity rates) and flags individuals for whom the reported sex in the PED file does not match the estimated sex (given genomic data). A PROBLEM arises if the two sexes do not match
-##11 samples are mismatched. All 11 samples are reported male in TCGA.
-
-##sort bim file by chromosome id and fam file should be ready as well, the following cmd will convert binary BED fileset back into a standard PED/MAP fileset
-plink --bfile BRCA1 --recode --out BRCA_ped
-
-##convert your ped/map file into a VCF file
-plink --ped BRCA1_ped.ped --map BRCA1_ped.map --recode vcf --out BRCA_vcf
